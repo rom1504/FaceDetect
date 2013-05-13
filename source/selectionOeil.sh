@@ -1,0 +1,1 @@
+perl selectionOeil.pl ../sortie/decoupe ../sortie/oeilTxt ../sortie/oeilIdentifie ../sortie/oeilSelectionne
