@@ -13,9 +13,9 @@ void detectAndDraw( Mat& img,CascadeClassifier& cascade,double scale,string fimg
 
 int main( int argc, const char** argv )
 {
-	if(argc!=4)
+	if(argc<3 || argc>4)
 	{
-		cout<<"Usage: "<<argv[0]<<" <image> <imageSortie> <modele>\n";
+		cout<<"Usage: "<<argv[0]<<" <image> <modele> [<imageSortie>]\n";
 	}
     Mat frame, frameCopy, image;
 
@@ -23,12 +23,12 @@ int main( int argc, const char** argv )
     CascadeClassifier cascade;
     double scale = 1;
 
-    cascade.load( argv[3] );
+    cascade.load( argv[2] );
      image = imread( argv[1], 1 );
    
 	if( !image.empty() )
 	{
-		detectAndDraw( image, cascade, scale ,argv[2]);
+		detectAndDraw( image, cascade, scale ,argc==4 ? argv[3] : "");
 		waitKey(0);
 	}
     return 0;
@@ -47,7 +47,7 @@ void detectAndDraw( Mat& img,CascadeClassifier& cascade,double scale,string fimg
         CV_RGB(255,255,0),
         CV_RGB(255,0,0),
         CV_RGB(255,0,255)} ;
-		int w=cvRound (img.rows/scale),h=cvRound(img.cols/scale);
+	int w=cvRound (img.rows/scale),h=cvRound(img.cols/scale);
     Mat gray, smallImg( w, h, CV_8UC1 );
 
     cvtColor( img, gray, CV_BGR2GRAY );
@@ -66,8 +66,8 @@ void detectAndDraw( Mat& img,CascadeClassifier& cascade,double scale,string fimg
     {
         Scalar color = colors[i%8];
 		cout<<r->x<<"\t"<<r->y<<"\t"<<r->width<<"\t"<<r->height<<"\n";
-		rectangle(img,Point(r->x,r->y),Point(r->x+r->width,r->y+r->height),color);
+		if(fimg!="") rectangle(img,Point(r->x,r->y),Point(r->x+r->width,r->y+r->height),color);
       
     }
-    imwrite(fimg,img);
+    if(fimg!="") imwrite(fimg,img);
 }

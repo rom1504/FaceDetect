@@ -13,6 +13,7 @@ basename($nf) =~ /^((.+)\.(?:jpg|jpeg))\.txt$/i;
 my $bn=$dossierImage."/".$1;
 my $sbn=$2;
 my $i=0;
+open(my $fw,">",$nf."_tmp");
 open(my $f,"<",$nf);
 my $i;
 while(my $ligne=<$f>)
@@ -20,7 +21,19 @@ while(my $ligne=<$f>)
 	$i++;
 	$ligne =~ s/\s+$//;
 	my @coords=split("\t",$ligne);
-	my $nn="$dossierDecoupe/$sbn"."_"."$i.jpg";
-	copy($bn,$nn);
-	system("mogrify -crop $coords[2]x$coords[3]+$coords[0]+$coords[1] $nn");
+	if((scalar @coords) eq 4)
+	{
+		my $nn="$dossierDecoupe/$sbn"."_"."$i.jpg";
+		print($nn."\n");
+		copy($bn,$nn);
+		system("mogrify -crop $coords[2]x$coords[3]+$coords[0]+$coords[1] $nn");
+		print($fw $ligne."\t".$nn."\n");
+	}
+	else
+	{
+		print($fw $ligne."\n");
+	}
 }
+close($f);
+close($fw);
+move($nf."_tmp",$nf);

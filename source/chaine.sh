@@ -13,6 +13,6 @@ rm $dossierIdentifie/*
 echo compilation:
 make
 echo detection:
-./multidetect.sh $dossierImage $dossierIdentifie $dossierDecoupeTxt
+./multidetect.sh $dossierImage $dossierDecoupeTxt $dossierIdentifie
 echo decoupage:
 ./couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt

@@ -21,7 +21,7 @@ sub enregistrer
 {
 	my ($fichier,$identifie,$txt,$selectionne,$modele)=@_;
 	my $f=basename $fichier;
-	open(my $r,"../bin/facedetect $fichier $identifie/$f $modele |");
+	open(my $r,"../bin/facedetect $fichier $modele $identifie/$f |");
 	my @yeux=<$r>;
 	close($r);
 	if((scalar @yeux)==2)

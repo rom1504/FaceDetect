@@ -7,9 +7,5 @@ fi
 dossierImage=$1
 dossierDecoupe=$2
 dossierDecoupeTxt=$3
-
-for i in $dossierDecoupeTxt/*
-do
-# 	echo $i
-	perl couper.pl $i $dossierImage $dossierDecoupe
-done
+./multidetect.sh $dossierImage $dossierDecoupeTxt
+./couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
