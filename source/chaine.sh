@@ -10,9 +10,15 @@ dossierIdentifie=../sortie/identifie
 rm $dossierDecoupe/*
 rm $dossierDecoupeTxt/*
 rm $dossierIdentifie/*
+
+dir=`dirname $0`
+
 echo compilation:
+adir=`pwd`
+cd $dir
 make
+cd $adir
 echo detection:
-./multidetect.sh $dossierImage $dossierDecoupeTxt $dossierIdentifie
+$dir/multidetect.sh $dossierImage $dossierDecoupeTxt $dossierIdentifie
 echo decoupage:
-./couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
+$dir/couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt

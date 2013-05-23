@@ -4,8 +4,14 @@ then
 		exit 1
 fi
 
+dir=`dirname $0`
+
 dossierImage=$1
 dossierDecoupe=$2
 dossierDecoupeTxt=$3
-./multidetect.sh $dossierImage $dossierDecoupeTxt
-./couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
+adir=`pwd`
+cd $dir
+make
+cd $adir
+$dir/multidetect.sh $dossierImage $dossierDecoupeTxt
+$dir/couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt

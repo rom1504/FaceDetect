@@ -4,6 +4,7 @@ then
 		exit 1
 fi
 
+dir=`dirname $0`
 dossierImage=$1
 dossierDecoupeTxt=$2
 if [[ $# -eq 3 ]]
@@ -19,9 +20,9 @@ do
 		echo $i
 		if [[ $# -eq 3 ]]
 		then
-			../bin/facedetect $i ../modele/haarcascade_frontalface_alt.xml $dossierIdentifie/$nom > $dossierDecoupeTxt/$nom.txt 
+			$dir/../bin/facedetect $i $dir/../modele/haarcascade_frontalface_alt.xml $dossierIdentifie/$nom > $dossierDecoupeTxt/$nom.txt 
 		else
-			../bin/facedetect $i ../modele/haarcascade_frontalface_alt.xml > $dossierDecoupeTxt/$nom.txt 
+			$dir/../bin/facedetect $i $dir/../modele/haarcascade_frontalface_alt.xml > $dossierDecoupeTxt/$nom.txt 
 		fi
 	fi
 done
