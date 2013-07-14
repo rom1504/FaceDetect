@@ -1,5 +1,5 @@
-all:facedetect
+all:../bin/facedetect
 	
-facedetect:facedetect.cpp
+../bin/facedetect:facedetect.cpp
 	mkdir -p ../bin
 	g++ `pkg-config --cflags opencv` -o ../bin/facedetect facedetect.cpp `pkg-config --libs opencv`
