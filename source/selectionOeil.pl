@@ -47,3 +47,5 @@ sub enregistrer
 my @fichiers=glob("$source/*");
 my @modeles=("../modele/haarcascade_eye_tree_eyeglasses.xml","../modele/haarcascade_eye.xml");
 foreach my $fichier (@fichiers) { foreach my $modele (@modeles) { if(enregistrer($fichier,$identifie,$txt,$selectionne,$modele)) { last; } } }
+
+# dossier de sortie entree déplacé/modifié : script à adapter si je choisi de le réutiliser
