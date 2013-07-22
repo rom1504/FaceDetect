@@ -9,9 +9,17 @@ dir=`dirname $0`
 dossierImage=$1
 dossierDecoupe=$2
 dossierDecoupeTxt=$3
+
+mkdir -p $dossierDecoupe
+mkdir -p $dossierDecoupeTxt
+
+
+echo compilation:
 adir=`pwd`
 cd $dir
 make
 cd $adir
+echo detection:
 $dir/multidetect.sh $dossierImage $dossierDecoupeTxt
+echo decoupage:
 $dir/couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
