@@ -20,6 +20,6 @@ cd $dir
 make
 cd $adir
 echo detection:
-$dir/multidetect.sh $dossierImage $dossierDecoupeTxt
+bash $dir/multidetect.sh $dossierImage $dossierDecoupeTxt
 echo decoupage:
-$dir/couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
+bash $dir/couper.sh $dossierImage $dossierDecoupe $dossierDecoupeTxt
