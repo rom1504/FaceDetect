@@ -12,17 +12,22 @@ then
 	dossierIdentifie=$3
 fi
 
-for i in $dossierImage/*
+list=`find -L $dossierImage -type f | sed 's,^'$dossierImage'/,,'`
+
+for nom in $list
 do
-	nom=`basename $i`
 	if [[ ! ( -e $dossierDecoupeTxt/$nom.txt ) ]]
 	then
-		echo $i
+		echo $nom
+		dirf=`dirname $nom`
+		mkdir -p $dossierDecoupeTxt/$dirf
+		
 		if [[ $# -eq 3 ]]
 		then
-			$dir/../bin/facedetect $i $dir/../modele/haarcascade_frontalface_alt.xml $dossierIdentifie/$nom > $dossierDecoupeTxt/$nom.txt 
+			mkdir -p $dossierIdentifie/$dirf
+			$dir/../bin/facedetect $dossierImage/$nom $dir/../modele/haarcascade_frontalface_alt.xml $dossierIdentifie/$nom > $dossierDecoupeTxt/$nom.txt 
 		else
-			$dir/../bin/facedetect $i $dir/../modele/haarcascade_frontalface_alt.xml > $dossierDecoupeTxt/$nom.txt 
+			$dir/../bin/facedetect $dossierImage/$nom $dir/../modele/haarcascade_frontalface_alt.xml > $dossierDecoupeTxt/$nom.txt 
 		fi
 	fi
 done

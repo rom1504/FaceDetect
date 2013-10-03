@@ -9,8 +9,10 @@ dossierImage=$1
 dossierDecoupe=$2
 dossierDecoupeTxt=$3
 
-for i in $dossierDecoupeTxt/*
+list=`find -L $dossierDecoupeTxt -type f | sed 's,^'$dossierDecoupeTxt'/,,'`
+
+for i in $list
 do
 # 	echo $i
-	perl $dir/couper.pl $i $dossierImage $dossierDecoupe
+	perl $dir/couper.pl $i $dossierImage $dossierDecoupe $dossierDecoupeTxt
 done
