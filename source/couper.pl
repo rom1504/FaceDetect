@@ -11,9 +11,10 @@ my $nf=$ARGV[0];
 my $dossierImage=$ARGV[1];
 my $dossierDecoupe=$ARGV[2];
 my $dossierDecoupeTxt=$ARGV[3];
-$nf =~ /^((.+)\.(?:jpg|jpeg))\.txt$/i;
+$nf =~ /^((.+)\.(jpg|jpeg|png))\.txt$/i;
 my $bn=$dossierImage."/".$1;
 my $sbn=$2;
+my $ext=$3;
 my $i=0;
 $nf=$dossierDecoupeTxt."/".$nf;
 
@@ -28,7 +29,7 @@ while(my $ligne=<$f>)
 	my @coords=split("\t",$ligne);
 	if((scalar @coords) eq 4)
 	{
-		my $nn="$dossierDecoupe/$sbn"."_"."$i.jpg";
+		my $nn="$dossierDecoupe/$sbn"."_"."$i.".$ext;
 		print($nn."\n");
 		make_path(dirname($nn));
 		copy($bn,$nn);
