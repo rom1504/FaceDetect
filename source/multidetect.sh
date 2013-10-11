@@ -12,7 +12,7 @@ then
 	dossierIdentifie=$3
 fi
 
-list=`find -L $dossierImage  -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -type f | sed 's,^'$dossierImage'/,,'`
+list=`find -L $dossierImage  -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -type f | sed 's,^'$dossierImage'/,,'`
 
 for nom in $list
 do
